@@ -1,5 +1,5 @@
 # Type-Challenges
-A repositry to solve [type-challenges](https://github.com/type-challenges/type-challenges/tree/main)
+A repository to solve [type-challenges](https://github.com/type-challenges/type-challenges/tree/main)
 
 # Solves
 
