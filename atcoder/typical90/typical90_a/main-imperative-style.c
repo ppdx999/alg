@@ -16,14 +16,6 @@ int check(int *a, int n, int x, int len, int k) {
   return num >= k + 1;
 }
 
-int bsearch(int *a, int n, int len, int k, int left, int right) {
-  if(right - left == 1) return left;
-
-  int mid = (left + right) / 2;
-
-  if(check(a, n, mid, len, k)) return bsearch(a, n, len, k, mid, right);
-  else return bsearch(a, n, len, k, left, mid);
-}
 
 int main(int argc, char *argv[]) {
     int n, len, k;
@@ -35,7 +27,12 @@ int main(int argc, char *argv[]) {
         scanf("%d", &a[i]);
     }
 
-    int left = bsearch(a, n, len, k, -1, len + 1);
+    int left = -1, right = len + 1;
+    while(right - left > 1) {
+      int mid = (left + right) / 2;
+      if(check(a, n, mid, len, k)) left = mid;
+      else right = mid;
+    }
 
     printf("%d\n", left);
 }
