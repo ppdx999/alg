@@ -13,7 +13,7 @@ run: $(BIN)
 
 .PHONY: test
 test: $(BIN)
-	oj t -c "./$(BIN)" -d test
+	oj t -c "./$(BIN)" -d test -N
 
 .PHONY: clean
 clean:
