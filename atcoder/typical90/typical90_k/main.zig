@@ -76,13 +76,17 @@ fn solve(alc: std.mem.Allocator, N: u64, jobs: []Job) !u64 {
 }
 
 pub fn main() !void {
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+    defer arena.deinit();
+    const alc = arena.allocator();
+
     var buf_reader = std.io.bufferedReader(stdin);
     var reader = buf_reader.reader();
 
     var buffer: [1024]u8 = undefined;
 
     const N = parseInt(u64, nextLine(reader, &buffer));
-    var jobs: [5000]Job = undefined;
+    var jobs: []Job = try alc.alloc(Job, N);
 
     {
         var i: u64 = 0;
@@ -91,10 +95,6 @@ pub fn main() !void {
         }
     }
 
-    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
-    defer arena.deinit();
-    const alc = arena.allocator();
-
-    const ans = try solve(alc, N, &jobs);
+    const ans = try solve(alc, N, jobs);
     try stdout.print("{d}\n", .{ans});
 }
