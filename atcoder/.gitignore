@@ -160,6 +160,7 @@ cython_debug/
 #.idea/
 
 /**/*main
+/**/*a.out
 /**/*test
 /**/*Makefile
 /**/*zig-cache
